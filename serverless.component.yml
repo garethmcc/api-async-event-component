@@ -1,0 +1,121 @@
+name: api-async-event
+version: dev
+author: garethmcc
+org: garethcomponents
+description: Deploys an entity based API with asynchronous messages to SNS
+keywords: aws, serverless, sns, apigateway
+main: ./src
+
+actions:
+  # deploy
+  deploy:
+    description: Deploy your REST API into AWS and setup the SNS connection
+    inputs:
+      src:
+        type: src
+        description: The folder containing the source code of your Express.js application.
+      memory:
+        type: number
+        description: The memory size of your AWS Lambda function.
+        default: 1024
+        allow:
+          - 128
+          - 192
+          - 256
+          - 320
+          - 384
+          - 448
+          - 512
+          - 576
+          - 704
+          - 768
+          - 832
+          - 1024
+          - 1280
+          - 1536
+          - 1792
+          - 2048
+          - 2240
+          - 2688
+          - 2944
+          - 3008
+
+      timeout:
+        type: number
+        description: The number of seconds until your AWS Lambda function times out.
+        default: 5
+        min: 1
+        max: 900
+
+      description:
+        type: string
+        description: A description of your application.
+
+      region:
+        type: string
+        description: The AWS region you wish to deploy your application to.
+        default: us-east-1
+        allow:
+          - us-east-1
+          - us-east-2
+          - us-west-1
+          - us-west-2
+          - af-south-1
+          - ap-east-1
+          - ap-south-1
+          - ap-northeast-1
+          - ap-northeast-2
+          - ap-southeast-1
+          - ap-southeast-2
+          - ca-central-1
+          - cn-north-1
+          - cn-northwest-1
+          - eu-central-1
+          - eu-west-1
+          - eu-west-2
+          - eu-west-3
+          - eu-south-1
+          - eu-north-1
+          - me-south-1
+          - sa-east-1
+          - us-gov-east-1
+          - us-gov-west-1
+
+      domain:
+        type: string
+        description: A custom domain that will be automatically set up for your Express.js API.
+
+      roleName:
+        type: string
+        description: The name of an AWS IAM Role that contains custom permissions for your AWS Lambda function.
+        default: us-east-1
+
+      env:
+        type: env
+        description: Environment variables to be passed into your AWS Lambda function runtime.
+
+      traffic:
+        type: number
+        description: A percentage of traffic expressed as a decimal between 0.0 and 1.0 (e.g. 0.4) to serve your latest deployment to
+        min: 0
+        max: 1
+
+      vpc:
+        type: object
+        required: false
+        description: The VPC configuration for your AWS Lambda function
+        keys:
+          securityGroupIds:
+            type: string
+          SubnetIds:
+            type: String
+
+  # remove
+
+  remove:
+    description: Removes your Express.js application from AWS Lambda, AWS HTTP API and more
+
+  # metrics
+
+  metrics:
+    description: Fetch metrics from your Express.js API

@@ -1,0 +1,9 @@
+component: api-async-event               # (required) name of the component. In that case, it's express.  You will want to pin this to a specific version in production via semantic versioning, like this: express@1.0.10.  Run 'serverless registry express' to see available versions.
+name: my-rest-api                # (required) name of your express component instance.
+org: garethcomponents               # (optional) serverless dashboard org. default is the first org you created during signup.
+app: myApp                       # (optional) serverless dashboard app. default is the same as the name property.
+stage: dev
+
+inputs:
+  entityName: product
+  version: 1
